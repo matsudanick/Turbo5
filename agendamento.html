@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamento - MasterCar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="MasterCar">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="agendamento.html">Agendamento</a></li>
+                <li><a href="confirmacao.html">Confirmação</a></li>
+            </ul>
+        </nav>
+        <div id="horario"></div>
+    </header>
+
+    <main>
+        <h1>Agende seu Serviço</h1>
+        <form action="confirmacao.php" method="post">
+            <div class="form-group">
+                <label for="nome">Nome Completo:</label>
+                <input type="text" id="nome" name="nome" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">E-mail:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="telefone">Telefone:</label>
+                <input type="tel" id="telefone" name="telefone" required>
+            </div>
+
+            <div class="form-group">
+                <label for="veiculo">Veículo (Modelo/Ano):</label>
+                <input type="text" id="veiculo" name="veiculo" required>
+            </div>
+
+            <div class="form-group">
+                <label for="servico">Serviço Desejado:</label>
+                <select id="servico" name="servico" required>
+                    <option value="">Selecione...</option>
+                    <option value="revisao">Revisão Preventiva</option>
+                    <option value="oleo">Troca de Óleo</option>
+                    <option value="freios">Serviço de Freios</option>
+                    <option value="suspensao">Suspensão</option>
+                    <option value="diagnostico">Diagnóstico Eletrônico</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="data">Data do Agendamento:</label>
+                <input type="date" id="data" name="data" required>
+            </div>
+
+            <div class="form-group">
+                <label for="observacoes">Observações:</label>
+                <textarea id="observacoes" name="observacoes" rows="4"></textarea>
+            </div>
+
+            <button type="submit" class="btn">Agendar Serviço</button>
+        </form>
+    </main>
+
+    <footer>
+        <p>© 2025 Turbo5 - Todos os direitos reservados</p>
+    </footer>
+
+    <script>
+        function atualizarHorario() {
+            const agora = new Date();
+            document.getElementById('horario').textContent = agora.toLocaleTimeString();
+        }
+        setInterval(atualizarHorario, 1000);
+        atualizarHorario();
+    </script>
+</body>
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmação - MasterCar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="logo.png" alt="MasterCar">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="agendamento.html">Agendamento</a></li>
+                <li><a href="confirmacao.html">Confirmação</a></li>
+            </ul>
+        </nav>
+        <div id="horario"></div>
+    </header>
+
+    <main>
+        <h1>Confirmação de Agendamento</h1>
+        
+        <?php
+        if ($_SERVER["REQUEST_METHOD"] == "POST") {
+            echo '<div class="confirmacao">';
+            echo '<h2>Obrigado, ' . htmlspecialchars($_POST["nome"]) . '!</h2>';
+            echo '<p>Seu agendamento foi recebido com sucesso.</p>';
+            
+            echo '<div class="detalhes">';
+            echo '<h3>Detalhes do Agendamento:</h3>';
+            echo '<p><strong>Nome:</strong> ' . htmlspecialchars($_POST["nome"]) . '</p>';
+            echo '<p><strong>E-mail:</strong> ' . htmlspecialchars($_POST["email"]) . '</p>';
+            echo '<p><strong>Telefone:</strong> ' . htmlspecialchars($_POST["telefone"]) . '</p>';
+            echo '<p><strong>Veículo:</strong> ' . htmlspecialchars($_POST["veiculo"]) . '</p>';
+            echo '<p><strong>Serviço:</strong> ' . htmlspecialchars($_POST["servico"]) . '</p>';
+            echo '<p><strong>Data:</strong> ' . htmlspecialchars($_POST["data"]) . '</p>';
+            
+            if (!empty($_POST["observacoes"])) {
+                echo '<p><strong>Observações:</strong> ' . htmlspecialchars($_POST["observacoes"]) . '</p>';
+            }
+            
+            echo '</div>';
+            
+            echo '<p>Entraremos em contato para confirmar o horário. Obrigado por escolher a MasterCar!</p>';
+            echo '</div>';
+        } else {
+            echo '<p>Nenhum dado de agendamento recebido. Por favor, preencha o <a href="agendamento.php">formulário de agendamento</a>.</p>';
+        }
+        ?>
+    </main>
+
+    <footer>
+        <p>© 2025 Turbo5 - Todos os direitos reservados</p>
+    </footer>
+
+    <script>
+        function atualizarHorario() {
+            const agora = new Date();
+            document.getElementById('horario').textContent = agora.toLocaleTimeString();
+        }
+        setInterval(atualizarHorario, 1000);
+        atualizarHorario();
+    </script>
+</body>
+</html>
